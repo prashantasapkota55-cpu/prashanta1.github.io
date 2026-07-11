@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prashanta Sapkota | Portfolio</title>
+    <!-- Google Fonts (Poppins) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --primary-accent: #00d2ff;
+            --secondary-accent: #0066ff;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --gradient: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            --glass-blur: blur(12px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- REUSABLE UTILITIES --- */
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 100px 0 60px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(0, 210, 255, 0.15);
+        }
+
+        /* --- STICKY NAVIGATION --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid var(--card-border);
+            transition: all 0.3s ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+
+        /* --- HOME SECTION --- */
+        #home {
+            background: radial-gradient(circle at 80% 20%, rgba(0, 102, 255, 0.15), transparent 40%);
+        }
+
+        .home-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            width: 100%;
+        }
+
+        .home-text {
+            flex: 1;
+        }
+
+        .home-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        /* Typing Effect Container */
+        .typing-container {
+            font-size: 1.8rem;
+            color: var(--primary-accent);
+            font-weight: 600;
+            margin-bottom: 15px;
+            height: 40px; 
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 2px solid var(--card-border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary-accent);
+            transform: translateY(-2px);
+        }
+
+        .home-img-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-img {
+            width: 380px;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            background-image: linear-gradient(var(--bg-color), var(--bg-color)), var(--gradient);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 0 0 40px rgba(0, 210, 255, 0.25);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--primary-accent);
+            margin-top: 4px;
+        }
+
+        .info-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .info-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- EDUCATION SECTION --- */
+        .edu-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .edu-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-accent), transparent);
+        }
+
+        .edu-card {
+            position: relative;
+            padding-left: 70px;
+            margin-bottom: 30px;
+        }
+
+        .edu-marker {
+            position: absolute;
+            left: 19px;
+            top: 5px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--bg-color);
+            border: 4px solid var(--primary-accent);
+            z-index: 2;
+        }
+
+        .edu-card h3 {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .edu-card .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(0, 210, 255, 0.1);
+            color: var(--primary-accent);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .edu-card p {
+            color: var(--text-muted);
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-link-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px 20px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.3s;
+        }
+
+        .contact-link-item i {
+            font-size: 1.5rem;
+            color: var(--primary-accent);
+        }
+
+        .contact-link-item:hover {
+            background: rgba(0, 102, 255, 0.1);
+            border-color: var(--primary-accent);
+            transform: translateX(5px);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            padding: 14px 18px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-accent);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
+        }
+
+        textarea.form-control {
+            resize: none;
+            height: 150px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--card-border);
+            padding: 30px 0;
+            text-align: center;
+            background: rgba(7, 10, 17, 0.9);
+        }
+
+        footer p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        footer span {
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        /* --- BACK TO TOP BUTTON --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: -60px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--gradient);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            z-index: 99;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+            opacity: 0;
+        }
+
+        .back-to-top.show {
+            right: 30px;
+            opacity: 1;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
+        }
+
+        /* --- SCROLL ANIMATION CLASS --- */
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 992px) {
+            .home-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 40px;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .profile-img {
+                width: 300px;
+                height: 300px;
+            }
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            .nav-links {
+                position: fixed;
+                top: 73px;
+                right: -100%;
+                width: 250px;
+                height: calc(100vh - 73px);
+                background: rgba(11, 15, 25, 0.95);
+                backdrop-filter: var(--glass-blur);
+                -webkit-backdrop-filter: var(--glass-blur);
+                flex-direction: column;
+                padding: 40px;
+                gap: 30px;
+                transition: right 0.4s ease;
+                border-left: 1px solid var(--card-border);
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .home-text h1 {
+                font-size: 2.5rem;
+            }
+            .typing-container {
+                font-size: 1.4rem;
+            }
+            section {
+                padding: 80px 0 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY NAVIGATION -->
+    <header>
+        <div class="container navbar">
+            <a href="#home" class="logo">Prashanta.</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- HOME SECTION -->
+    <section id="home">
+        <div class="container home-content">
+            <div class="home-text">
+                <h1 id="user-name"></h1>
+                <div class="typing-container">
+                    <span id="typing-text"></span>
+                </div>
+                <p class="subtitle">I am learning different programming languages.</p>
+                <div class="btn-group">
+                    <a href="#about" class="btn btn-primary">About Me</a>
+                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                </div>
+            </div>
+            <div class="home-img-wrapper">
+                <!-- Verbatim image filename referenced below -->
+                <img src="https://i.ibb.co/bjG4Vjsk/720267201-2563851294046615-3936345137161302578-nspk1.jpg"
+     alt="Prashanta Sapkota"
+     class="profile-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="fade-in-element">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="glass-card">
+                <p style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-main);">
+                    Hello! I'm Prashanta Sapkota, a Class 11 student from Nepal. I am currently learning different programming languages and improving my coding skills every day. I enjoy building websites, exploring new technologies, and solving programming problems. My dream is to become a professional Software Engineer and create useful software that helps people.
+                </p>
+                <div class="about-grid">
+                    <div class="info-item">
+                        <i class="fa-solid fa-user"></i>
+                        <div>
+                            <h4>Name</h4>
+                            <p>Prashanta Sapkota</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <div>
+                            <h4>Profession & Education</h4>
+                            <p>Student (Class 11)</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-code"></i>
+                        <div>
+                            <h4>Current Status</h4>
+                            <p>Learning Programming Languages</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-bullseye"></i>
+                        <div>
+                            <h4>Goal</h4>
+                            <p>Professional Software Engineer</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-heart"></i>
+                        <div>
+                            <h4>Passion</h4>
+                            <p>Web Dev, Software Dev, Tech, Problem Solving</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="fade-in-element">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="edu-timeline">
+                <div class="edu-card glass-card">
+                    <div class="edu-marker"></div>
+                    <h3>Class 11 Student</h3>
+                    <span class="tag">Computer Science & Programming</span>
+                    <p>Deeply interested in tech, focusing heavily on modern Computer Science principles. Continuously learning new programming concepts, algorithms, and web technologies to build a rock-solid foundation for future software engineering endeavors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="fade-in-element">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-wrapper">
+                
+                <!-- Quick Contact Links -->
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <p>Feel free to reach out! Whether you want to talk about programming, have a question, or just want to connect, send a message or find me on social media.</p>
+                    <div class="contact-links">
+                        <a href="mailto:prashantasapkota55@gmail.com" class="contact-link-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong>
+                                <p>prashantasapkota55@gmail.com</p>
+                            </div>
+                        </a>
+                        <a href="https://www.facebook.com/share/1Ec9UxSZ6B/" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                            <i class="fa-brands fa-facebook"></i>
+                            <div>
+                                <strong>Facebook Profile</strong>
+                                <p>Connect on Facebook</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="glass-card">
+                    <form class="contact-form" id="portfolioContactForm">
+                        <div class="form-group">
+                            <label for="visitorName">Full Name</label>
+                            <input type="text" id="visitorName" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="visitorEmail">Email Address</label>
+                            <input type="email" id="visitorEmail" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailSubject">Subject</label>
+                            <input type="text" id="emailSubject" class="form-control" placeholder="Subject Topic" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="visitorMessage">Message</label>
+                            <textarea id="visitorMessage" class="form-control" placeholder="Type your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px;">
+                            <i class="fa-solid fa-paper-plane" style="margin-right: 10px;"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Prashanta Sapkota</p>
+        <span>Made from prashanta sapkota  using HTML, CSS & JavaScript.</span>
+    </footer>
+
+    <!-- BACK TO TOP BUTTON -->
+    <a href="#home" class="back-to-top" id="backToTopBtn">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // --- 1. MOBILE MENU TOGGLE ---
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenu.querySelector('i').classList.toggle('fa-bars');
+            mobileMenu.querySelector('i').classList.toggle('fa-xmark');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.querySelector('i').classList.add('fa-bars');
+                mobileMenu.querySelector('i').classList.remove('fa-xmark');
+            });
+        });
+
+        // --- 2. TYPING ANIMATION ---
+        const nameText = "Prashanta Sapkota";
+        const subtitleText = "Student | Future Software Engineer | Programming Learner";
+        
+        let nameIndex = 0;
+        let subIndex = 0;
+
+        function typeName() {
+            if (nameIndex < nameText.length) {
+                document.getElementById("user-name").innerHTML += nameText.charAt(nameIndex);
+                nameIndex++;
+                setTimeout(typeName, 80);
+            } else {
+                setTimeout(typeSubtitle, 200);
+            }
+        }
+
+        function typeSubtitle() {
+            if (subIndex < subtitleText.length) {
+                document.getElementById("typing-text").innerHTML += subtitleText.charAt(subIndex);
+                subIndex++;
+                setTimeout(typeSubtitle, 50);
+            }
+        }
+
+        // Start typing animation on window load
+        window.addEventListener('DOMContentLoaded', typeName);
+
+        // --- 3. SCROLL FADE-IN ANIMATION ---
+        const fadeElements = document.querySelectorAll('.fade-in-element');
+        
+        const observerOptions = {
+            root: null,
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting){
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Animates only once
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // --- 4. BACK TO TOP BUTTON ---
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        // --- 5. MAILTO CONTACT FORM HANDLER ---
+        document.getElementById('portfolioContactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevents default form refresh
+            
+            const name = document.getElementById('visitorName').value;
+            const email = document.getElementById('visitorEmail').value;
+            const subject = document.getElementById('emailSubject').value;
+            const message = document.getElementById('visitorMessage').value;
+            
+            const targetEmail = "prashantasapkota55@gmail.com";
+            
+            // Crafting mail body content
+            const emailBody = `Visitor Name: ${name}%0A` +
+                              `Visitor Email: ${email}%0A%0A` +
+                              `Message:%0A${message}`;
+            
+            // Constructing mailto url
+            const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${emailBody}`;
+            
+            // Open default mail client
+            window.location.href = mailtoUrl;
+        });
+    </script>
+</body>
+</html>
